@@ -26,4 +26,4 @@ students.set(elena, elenaLessons);
 // Проверка:
 console.log(`Преподаватель по математике: ${lessons.get("Математика")}`); // Смирнов
 console.log(`Уроки Ивана: ${[...students.get(ivan)]}`);   // Математика, История
-console.log(`Уроки Ивана: ${[...students.get(elena)]}`);   // Математика, История
+console.log(`Уроки Елены: ${[...students.get(elena)]}`);   // Математика, История
