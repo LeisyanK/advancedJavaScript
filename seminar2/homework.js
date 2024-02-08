@@ -12,74 +12,74 @@
 // Реализуйте метод hasBook(title), который будет проверять наличие книги в библиотеке и возвращать true или false в зависимости от того, есть ли такая книга в списке или нет.
 
 // Реализуйте конструктор, который принимает начальный список книг(массив) в качестве аргумента.Убедитесь, что предоставленный массив не содержит дубликатов; в противном случае выбрасывайте ошибку.
-// class Library {
-//     #books = [];
-//     constructor (books) {
-//         const setBooks = new Set();
-//         setBooks.add([...books]);
-//         // console.log('Set: ' + [...setBooks]);
-//         // books.forEach(element => {
-//         //     setBooks.add(element);
-//         // });
-//         console.log('Set: ' + [...setBooks]);
+class Library {
+    #books = [];
+    constructor (books) {
+        const setBooks = new Set();
+        setBooks.add([...books]);
+        // console.log('Set: ' + [...setBooks]);
+        // books.forEach(element => {
+        //     setBooks.add(element);
+        // });
+        console.log('Set: ' + [...setBooks]);
 
-//         if (setBooks.size !== books.lenght) {
-//             throw new Error('Список книг содержит дубликаты');
-//         } else
-//         // this.#books = [...books];
-//         this.#books = books;
-//     }
-//     getAllBooks = function () {
-//         return this.#books;
-//     };
-//     addBook(title) {
-//         if (this.hasBook(title)) {
-//             throw new Error(`Книга "${title}" уже есть`);
-//         }
-//         this.#books.push(title);
-//     }
-//     hasBook(title) {
-//         if (this.#books.indexOf(title) === -1) {
-//             return false;
-//         }
-//         return true;
-//     }
-//     removeBook(title) {
-//         const bookIndex = this.#books.indexOf(title);
-//         // if (this.hasBook(title)) {
-//         //     // this.#books
-//         //     console.log(`Удаляем "${title}"`);
-//         // }
-//         if (bookIndex === -1) {
-//             throw new Error(`Книги "${title}" нет в библиотеке`);
-//         }
-//         this.#books.splice(bookIndex, 1);
-//     }
-// }
+        if (setBooks.size !== books.lenght) {
+            throw new Error('Список книг содержит дубликаты');
+        } else
+        // this.#books = [...books];
+        this.#books = books;
+    }
+    getAllBooks = function () {
+        return this.#books;
+    };
+    addBook(title) {
+        if (this.hasBook(title)) {
+            throw new Error(`Книга "${title}" уже есть`);
+        }
+        this.#books.push(title);
+    }
+    hasBook(title) {
+        if (this.#books.indexOf(title) === -1) {
+            return false;
+        }
+        return true;
+    }
+    removeBook(title) {
+        const bookIndex = this.#books.indexOf(title);
+        // if (this.hasBook(title)) {
+        //     // this.#books
+        //     console.log(`Удаляем "${title}"`);
+        // }
+        if (bookIndex === -1) {
+            throw new Error(`Книги "${title}" нет в библиотеке`);
+        }
+        this.#books.splice(bookIndex, 1);
+    }
+}
 
-// const book1 = 'Робинзон Крузо';
-// const book2 = 'Остров сокровищ';
-// const book3 = 'Джейн Эйр';
-// const book4 = 'Остров сокровищ';
-// const book5 = 'Отцы и дети';
-// const newBooks = [];
-// newBooks.push(book1, book2, book3);
-// const newBooks2 = [];
-// newBooks2.push(book1, book2, book3, book4);
-// try {
-//     const lib = new Library(newBooks);
-//     console.log(lib.getAllBooks());
-//     // lib.addBook(book4);             // Ошибка: Книга "Остров сокровищ" уже есть
-//     console.log(lib.hasBook(book2));
-//     lib.removeBook(book2);
-//     console.log(lib.getAllBooks());
+const book1 = 'Робинзон Крузо';
+const book2 = 'Остров сокровищ';
+const book3 = 'Джейн Эйр';
+const book4 = 'Остров сокровищ';
+const book5 = 'Отцы и дети';
+const newBooks = [];
+newBooks.push(book1, book2, book3);
+const newBooks2 = [];
+newBooks2.push(book1, book2, book3, book4);
+try {
+    const lib = new Library(newBooks);
+    console.log(lib.getAllBooks());
+    // lib.addBook(book4);             // Ошибка: Книга "Остров сокровищ" уже есть
+    console.log(lib.hasBook(book2));
+    lib.removeBook(book2);
+    console.log(lib.getAllBooks());
 
-//     const lib2 = new Library(newBooks2);
-//     console.log(lib2.getAllBooks());    // Ошибка: Список книг содержит дубликаты
+    const lib2 = new Library(newBooks2);
+    console.log(lib2.getAllBooks());    // Ошибка: Список книг содержит дубликаты
 
-// } catch (error) {
-//     console.error('Ошибка: ' + error.message);
-// }
+} catch (error) {
+    console.error('Ошибка: ' + error.message);
+}
 
 
 
@@ -134,7 +134,12 @@ const buttonElement = document.querySelector('.add-review');
 const reviews = document.querySelector('#reviews');
 const errorElement = document.querySelector('.error-message');
 const selectElement = document.querySelector('#product');
-// reviews.textContent = initialData;
+selectElement.textContent = '';
+initialData.forEach((element) => {
+    const option = document.createElement('option');
+    option.textContent = element.product;
+    selectElement.appendChild(option);
+})
 getReviews(initialData);
 
 buttonElement.addEventListener('click', () => {
@@ -143,27 +148,37 @@ buttonElement.addEventListener('click', () => {
         if (review.value.length < 3 || review.value.length > 10) {
             throw new Error('Длина отзыва не соответствует.');
         }
-        // count ++;
         let newReview = {};
-        // newReview.product = "Apple 18";
-        // newReview.product = selectElement.options[selectElement.selectedIndex].text;
-        newReview.product = selectElement.options[selectElement.selectedIndex].text;
-        newReview.reviews = [];
-        let newReviewElement = {};
-        newReviewElement.id = count ++;
-        newReviewElement.text = review.value;
-        newReview.reviews.push(newReviewElement);
-        initialData.push(newReview);
-        console.log(newReview);
+        let productName = selectElement.options[selectElement.selectedIndex].text; // находит товар, выбранный в списке select
 
-        // // вывод на экран
-        // getReviews(initialData);
-        
+        const indexOfProduct = findProduct(initialData, productName);
+        if (indexOfProduct === -1) {
+            // если клиент введет новый товар ( фукнционал не добавлен. есть только выбор из имеющихся товаров - выполнится else)
+            // для решения можно добавить поле для ввода названия товара
+            newReview.product = selectElement.options[selectElement.selectedIndex].text;
+            newReview.reviews = [];
+            let newReviewElement = {};
+            newReviewElement.id = count++;
+            newReviewElement.text = review.value;
+            newReview.reviews.push(newReviewElement);
+            initialData.push(newReview);
+        } else {
+            // нашли товар в массиве
+            // к его отзывам добавляем новый
+            // newReview.product = selectElement.options[selectElement.selectedIndex].text;
+
+            newReview.reviews = initialData[indexOfProduct].reviews;
+            let newReviewElement = {};
+            newReviewElement.id = count++;
+            newReviewElement.text = review.value;
+            newReview.reviews.push(newReviewElement);
+            // initialData.push(newReview); // новый товар не нужно добавлять, добавляем отзыв к имеющемуся товару
+            // console.log(newReview);
+        }
         errorElement.textContent = '';
     } catch (error) {
         errorElement.textContent = error.message;
     } finally {
-        // reviews.textContent = initialData;
         // вывод на экран
         getReviews(initialData);
     }
@@ -173,10 +188,6 @@ console.log(initialData);
 function getReviews(arrReviews) {
     reviews.textContent = '';
     arrReviews.forEach((element) => {
-        const option = document.createElement('option');
-        option.textContent = element.product;
-        selectElement.appendChild(option);
-
         const h2 = document.createElement('h2');
         h2.textContent = element.product;
         reviews.appendChild(h2);
@@ -187,3 +198,15 @@ function getReviews(arrReviews) {
         })
     })
 }
+
+function findProduct(data, productName) {
+    let number = -1;
+    data.forEach((element, index) => {
+        if (element.product === productName) {
+            // console.log('index ' + index);
+            // return index; // это только выход из цикла
+            number = index;
+        }
+    })
+    return number;
+};
