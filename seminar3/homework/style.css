@@ -1,0 +1,12 @@
+/* #labelForSelect, */
+.hidden {
+    display: none;
+}
+.review {
+    display: block;
+}
+.newReview {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

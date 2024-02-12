@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Добавить отзыв</title>
+</head>
+
+<body>
+    <div class="newReview">
+        <label for="checkBox">
+            <input type="checkbox" name="" id="checkBox">Выбрать продукт из списка
+        </label>
+
+        <label id="labelForInput" for="productName">Введите название продукта
+            <input type="text" id="productName">
+        </label>
+        <label id="labelForSelect" for="selectReview" class="hidden">Выберите продукт
+            <select name="" id="selectReview"></select>
+        </label>
+        <label for="productReview">Введите отзыв
+            <input type="text" name="" id="productReview">
+        </label>
+        <button id="addReview">Сохранить</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
